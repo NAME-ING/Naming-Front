@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { useState, useRef, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import { useResize, vh, vw } from "../../components/SizeConvert";
 import { useSelector } from "react-redux";
 import { http } from "../../api/http.js";
@@ -25,13 +24,8 @@ const SearchPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setkeyword(e.target.value);
-    getNames(keyword)
-      .then((res) => {
-        setSearch(true);
-        setdata(res.data.data);
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
+    console.log(getNames(keyword));
+    getNames(keyword);
   };
   const getNames = (keyword) => {
     if (keyword === undefined) {
@@ -43,7 +37,7 @@ const SearchPage = () => {
         `https://kj273456.pythonanywhere.com/dictionary/search/?keyword=${keyword}/`
       )
       .then((res) => {
-        setdatalength(res.data.data.length);
+        setdatalength(res.data.length);
       })
       .catch((error) => {
         alert("검색 실패");
@@ -75,7 +69,7 @@ const SearchPage = () => {
 
         {keyword === undefined ? null : (
           <ResultWrapper>
-            {dataLength === 0 ? (
+            {data === undefined ? (
               <div className="nullresult">
                 <SF_HambakSnow>
                   {keyword}하다는 아직 만들어지지 않았습니다.
