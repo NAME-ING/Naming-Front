@@ -80,22 +80,25 @@ const SearchPage = () => {
               </div>
             ) : (
               data.map((ele) => {
-                return (
-                  <>
-                    <div className="resultText">
-                      <div className="searchResult">
-                        <SF_HambakSnow>
-                          {ele.id}번째 {keyword}하다
-                        </SF_HambakSnow>
+                if (ele.firstName !== keyword) return;
+                else {
+                  return (
+                    <>
+                      <div className="resultText">
+                        <div className="searchResult">
+                          <SF_HambakSnow>
+                            {ele.id}번째 {ele.firstName}하다
+                          </SF_HambakSnow>
+                        </div>
+                        <div className="resultCount">
+                          <SF_HambakSnow>
+                            쌓인 문장 : {ele.stacked}개
+                          </SF_HambakSnow>
+                        </div>
                       </div>
-                      <div className="resultCount">
-                        <SF_HambakSnow>
-                          쌓인 문장 : {ele.stacked}개
-                        </SF_HambakSnow>
-                      </div>
-                    </div>
-                  </>
-                );
+                    </>
+                  );
+                }
               })
             )}
           </ResultWrapper>
