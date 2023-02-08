@@ -43,7 +43,6 @@ const SearchPage = () => {
         alert("검색 실패");
       });
   };
-
   useEffect(() => {
     if (keyword !== "") {
       getNames(keyword);
