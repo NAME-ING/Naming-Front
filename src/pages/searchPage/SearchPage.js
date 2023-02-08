@@ -18,7 +18,7 @@ const SearchPage = () => {
   const [data, setdata] = useState();
   const [dataLength, setdatalength] = useState();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    //.scrollTo(0, 0);
   }, []);
 
   const onSubmit = (e) => {
