@@ -34,10 +34,12 @@ const SearchPage = () => {
     }
     http
       .get(
-        `https://kj273456.pythonanywhere.com/dictionary/search/?keyword=${keyword}/`
+        `https://kj273456.pythonanywhere.com/dictionary/search/?keyword=${keyword}`
       )
       .then((res) => {
         setdatalength(res.data.length);
+        setdata(res.data.data);
+        console.log(data);
       })
       .catch((error) => {
         alert("검색 실패");
