@@ -61,8 +61,10 @@ const SearchPage = () => {
           <Input
             placeholder="다른 사전을 검색해 보세요"
             value={keyword || ""}
-            onChange={(e) => {
-              setkeyword(e.target.value);
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                setkeyword(e.target.value);
+              }
             }}
           />
           <object type="image/svg+xml" data={cancelImg} className="cancelImg" />
@@ -115,6 +117,7 @@ const ResultWrapper = styled.div`
   height: ${vh(10000)};
   background: #f2f2f2;
   border-radius: 5px;
+  overflow-y: scroll;
   .nullresult {
     font-size: ${vw(14)};
     margin: 10px auto;
