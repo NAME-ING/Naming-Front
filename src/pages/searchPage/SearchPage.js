@@ -33,20 +33,17 @@ const SearchPage = () => {
       return;
     }
     http
-      .get(
-        `https://kj273456.pythonanywhere.com/dictionary/search/?keyword=${keyword}`
-      )
+      .get(`https://kj273456.pythonanywhere.com/dictionary/search/?keyword=`)
       .then((res) => {
         setdatalength(res.data.length);
         setdata(res.data.data);
         console.log(data);
       })
-      .catch((error) => {
-        alert("검색 실패");
-      });
+      .catch((error) => {});
   };
+
   useEffect(() => {
-    if (keyword !== "") {
+    if (keyword !== null) {
       getNames(keyword);
       setSearch(true);
     }
@@ -60,11 +57,8 @@ const SearchPage = () => {
           <object type="image/svg+xml" data={searchImg} className="searchImg" />
           <Input
             placeholder="다른 사전을 검색해 보세요"
-            value={keyword || ""}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                setkeyword(e.target.value);
-              }
+            onChange={(e) => {
+              setkeyword(e.target.value);
             }}
           />
           <object type="image/svg+xml" data={cancelImg} className="cancelImg" />
